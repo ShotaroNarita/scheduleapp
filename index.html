@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./node_modules/bulma/css/bulma.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" class="content section">
+        <table class="table is-bordered">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th v-for="event in events">
+                        {{ event.name }}
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr v-for="(date, index) in timeaxis">
+                    <td> {{ date.format('YYYY/MM/DD ddd') }} </td>
+                    <td v-for="event in events" :style="event.style(date)"> </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="columns">
+            <span class="column is-2">
+                <label>New event</label>
+            </span>
+
+            <span class="column is-7">
+                <input type="text" class="input" v-model="new_name">
+            </span>
+
+            <span class="column is-3">
+                <button class="button is-info is-fullwidth" @click="add_event">add</button>
+            </span>
+        </div>
+    </div>
+
+    <script src="./moment.min.js"></script>
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vuex/dist/vuex.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
